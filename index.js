@@ -186,4 +186,3 @@ bot.on('message:text', ctx => {
 });
 
 bot.start();
-keep_alive();
