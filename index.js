@@ -40,6 +40,12 @@ bot.command('help', ctx => {
 });
 
 bot.command('start', async ctx => {
+	if (isGameActive) {
+		ctx.reply(
+			'Игра уже запущена. Используйте /join, чтобы присоединиться к текущей игре'
+		);
+	}
+
 	isGameActive = true;
 	gameEndMessageSent = false;
 	currentCity = '';
