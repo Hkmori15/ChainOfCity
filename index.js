@@ -12,6 +12,7 @@ const playerScores = {};
 const MAX_SCORE = 15;
 const notifiedPlayers = new Set();
 
+let isStarting = false;
 let isGameActive = false;
 let gameEndMessageSent = false;
 let joinPhase = false;
@@ -40,38 +41,49 @@ bot.command('help', ctx => {
 });
 
 bot.command('start', async ctx => {
-	if (isGameActive) {
+	if (isGameActive || isStarting) {
 		ctx.reply(
-			'Игра уже запущена. Используйте /join, чтобы присоединиться к текущей игре'
+			'Игра уже запущена или запускается. Дождитесь окончания текущей игры. '
 		);
+		return;
 	}
 
-	isGameActive = true;
-	gameEndMessageSent = false;
-	currentCity = '';
-	usedCities.clear();
-	activePlayers.clear();
-	Object.keys(playerScores).forEach(key => delete playerScores[key]);
+	isStarting = true;
 
-	const message =
-		'Игра в "Города" начинается! Используйте команду /join, чтобы присоединиться';
-	const sentMessage = await ctx.reply(message);
-	const endTime = Date.now() + 60000;
+	try {
+		isGameActive = true;
+		gameEndMessageSent = false;
+		currentCity = '';
+		usedCities.clear();
+		activePlayers.clear();
+		Object.keys(playerScores).forEach(key => delete playerScores[key]);
 
-	updateJoinTimer(ctx.api, sentMessage, message, endTime);
+		const message =
+			'Игра в "Города" начинается! Используйте команду /join, чтобы присоединиться';
+		const sentMessage = await ctx.reply(message);
+		const endTime = Date.now() + 60000;
 
-	joinPhase = true;
-	notifiedPlayers.clear();
+		updateJoinTimer(ctx.api, sentMessage, message, endTime);
 
-	joinTimer = setTimeout(() => {
-		joinPhase = false;
-		isGameActive = activePlayers.size > 0;
-		ctx.reply(
-			isGameActive
-				? 'Время для присоединения истекло. Игра начинается!'
-				: 'Никто не присоединился. Игра отменена'
-		);
-	}, 60000);
+		joinPhase = true;
+		notifiedPlayers.clear();
+
+		joinTimer = setTimeout(() => {
+			joinPhase = false;
+			isGameActive = activePlayers.size > 0;
+			ctx.reply(
+				isGameActive
+					? 'Время для присоединения истекло. Игра начинается!'
+					: 'Никто не присоединился. Игра отменена'
+			);
+		}, 60000);
+	} catch (error) {
+		console.error('Failed to start the game:', error);
+		await ctx.reply('Произошли технические шоколадки. Попробуйте позже');
+		isGameActive = false;
+	} finally {
+		isStarting = false;
+	}
 });
 
 bot.command('join', ctx => {
