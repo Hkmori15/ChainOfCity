@@ -65819,6 +65819,66 @@
 			"country_id": "7777",
 			"region_id": "7777",
 			"name": "Кобостан"
+		},
+		{
+			"city_id": "15789522",
+			"country_id": "7778",
+			"region_id": "7778",
+			"name": "Коботорск"
+		},
+		{
+			"city_id": "15789523",
+			"country_id": "7779",
+			"region_id": "7779",
+			"name": "Кобанджелес"
+		},
+		{
+			"city_id": "15789524",
+			"country_id": "7780",
+			"region_id": "7780",
+			"name": "Нью-Коб"
+		},
+		{
+			"city_id": "15789525",
+			"country_id": "7781",
+			"region_id": "7781",
+			"name": "Кобосибирск"
+		},
+		{
+			"city_id": "15789526",
+			"country_id": "7782",
+			"region_id": "7782",
+			"name": "Кобопетровск"
+		},
+		{
+			"city_id": "15789527",
+			"country_id": "7783",
+			"region_id": "7783",
+			"name": "Кобосква"
+		},
+		{
+			"city_id": "15789528",
+			"country_id": "7784",
+			"region_id": "7784",
+			"name": "Кобгород"
+		},
+		{
+			"city_id": "15789529",
+			"country_id": "7785",
+			"region_id": "7785",
+			"name": "Коб Вегас"
+		},
+		{
+			"city_id": "15789530",
+			"country_id": "7786",
+			"region_id": "7786",
+			"name": "Новокобск"
+		},
+		{
+			"city_id": "15789531",
+			"country_id": "7787",
+			"region_id": "7787",
+			"name": "Кобесса"
 		}
 	]
 }
