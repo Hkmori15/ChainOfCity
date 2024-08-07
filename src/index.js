@@ -310,7 +310,7 @@ bot.on('message', async ctx => {
 
 		await achievement.save();
 
-		if (game.scores[playerName] >= 5) {
+		if (game.scores[playerName] >= 999) {
 			return endGame(ctx);
 		} else {
 			ctx.reply(
