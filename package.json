@@ -10,7 +10,9 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"grammy": "^1.28.0"
+		"grammy": "^1.28.0",
+		"mongodb": "^6.8.0",
+		"mongoose": "^8.5.2"
 	},
 	"devDependencies": {
 		"dotenv": "^16.4.5"
